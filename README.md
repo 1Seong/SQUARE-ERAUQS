@@ -23,13 +23,12 @@ SQUARE::ERAUQS는 두 캐릭터를 동시에 조작하며 시점 전환과 다�
 
 | 항목 | 링크 |
 | --- | --- |
-| 게임 빌드 / 플레이 | [게임 빌드](https://drive.google.com/drive/folders/1vM2_CeByVGM1knHkupi5VcFxYvktSX5H?usp=sharing) |
 | Steam | [Steam 스토어](https://store.steampowered.com/app/4331920/SQUAREERAUQS/) |
 | 시연 영상 / 트레일러 | [트레일러 보기](https://1seong.github.io/assets/projects/square/trailer.mp4)|
 | 팀 문서 허브 | [프로젝트 문서](https://drive.google.com/drive/u/0/folders/1CryMZz71U2earFqjluCkLWHVGd4bTEiC) |
 | QA 기록 | [QA Log](https://docs.google.com/spreadsheets/d/1-eGDIEAFwoTwJuYDjnPrFnmGSa9eE8IL7ZH3_mnJYps/edit?usp=sharing) |
 
-**실행 방법:** 게임 빌드 링크에서 사용할 플랫폼의 배포 파일을 확인합니다. PC 빌드는 압축을 해제한 뒤 포함된 실행 파일을 실행하며, Android에서는 모바일용 빌드를 사용합니다.
+**실행 방법:** Steam 스토어에서 게임을 설치한 뒤 실행합니다.
 
 ## 팀 구성 및 역할
 
