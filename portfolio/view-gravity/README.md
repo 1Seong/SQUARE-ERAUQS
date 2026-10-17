@@ -4,6 +4,21 @@
 
 ## 코드
 
+```mermaid
+sequenceDiagram
+  participant I as 전환 입력
+  participant S as Stage
+  participant V as 카메라·투영 벽·좌표 보정
+  participant G as CustomGravity
+  I->>S: ConvertButton
+  S->>S: 점프·제한·전환 중 여부 검사
+  S->>S: 현재 시점 변경
+  S->>V: convertEvent 구독자 호출
+  S->>G: 같은 이벤트 전달
+  G->>G: 중력 방향·이동 축 제약 갱신
+  S->>S: convertEventLast
+```
+
 **Stage:** 카메라·투영 벽·좌표 보정을 이벤트로 연결합니다. **CustomGravity:** 시점에 맞춰 중력 방향과 Rigidbody 이동 축을 바꿉니다. **GameManager:** 현재 시점과 플레이 상태를 보관합니다.
 
 ```csharp

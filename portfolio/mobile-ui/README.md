@@ -111,7 +111,35 @@ private void OnEnable()
 }
 ```
 
+**Localization 에셋:** 번역 문구는 Shared Data의 공통 키·ID와 locale별 문자열 테이블로 관리합니다. 아래는 실제 같은 ID의 두 번역을 발췌한 것이며, UI 컴포넌트 바인딩과 자동 번역 알고리즘 구현을 보여주는 코드는 아닙니다.
+
+```yaml
+# New Table Shared Data.asset: 문구 키와 공통 엔트리 ID
+m_TableCollectionName: New Table
+m_Entries:
+- m_Id: 407357644800
+  m_Key: stage 1-1
+
+---
+# New Table_ko.asset: 같은 ID의 한국어 번역
+m_LocaleId:
+  m_Code: ko
+m_TableData:
+- m_Id: 407357644800
+  m_Localized: 같은 색의 문 앞에 네모를 위치시켜보세요.
+
+---
+# New Table_en.asset: 같은 ID의 영어 번역
+m_LocaleId:
+  m_Code: en
+m_TableData:
+- m_Id: 407357644800
+  m_Localized: Try placing the square in front of the matching colored door.
+```
+
 ## 생략 및 재구성한 내용
+
+- 추가 원본: `Assets/Language/New Table Shared Data.asset`, `New Table_ko.asset`, `New Table_en.asset`. 한국어 Unicode 이스케이프는 읽기 쉽게 풀었고 Unity YAML의 공통 메타데이터는 생략했습니다.
 
 - 원본: `Assets/Scripts/InputWrapper.cs`, `UI/MobileButtons.cs`·`MobileJumpNShift.cs`·`MobileUIManager.cs`·`LocalizationAnimatorEvent.cs`, `Mobile/SafeAreaFitter.cs`·`Joystick.cs`. 기준 커밋: `0607414498b6af712b2c6225317c23dc2fa48ac7`.
 - InputWrapper의 필드 이름을 줄였고 다른 입력 흐름은 유지했습니다. 각 코드 블록은 별도 클래스의 발췌입니다.

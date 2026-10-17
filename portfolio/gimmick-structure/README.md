@@ -4,6 +4,19 @@
 
 ## 코드
 
+```mermaid
+classDiagram
+  class PlayerSelectableInterface {
+    CheckColor()
+  }
+  PlayerSelectableInterface <|.. PlayerSelectable
+  PlayerSelectableInterface <|.. PlayerNonSelect
+  ItemBehavior --> PlayerSelectableInterface : 적용 정책
+  ItemBehavior <|-- Consumable
+  ItemBehavior --> EffectSubscriber : PlayerTriggerEvent
+  note for EffectSubscriber "개별 기믹 효과는 팀원 구현"
+```
+
 **ItemBehavior:** 색상 정책과 플레이어 진입 이벤트를 공통 처리합니다. **PlayerSelectableInterface:** 색상별 적용 정책을 교체합니다. **Consumable:** 공통 소모 처리를 확장합니다. 개별 기믹의 효과는 이 샘플에 포함하지 않습니다.
 
 ```csharp

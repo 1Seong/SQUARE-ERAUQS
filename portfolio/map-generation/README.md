@@ -4,6 +4,17 @@
 
 ## 코드
 
+```mermaid
+flowchart LR
+  A["맵툴 출력 JSON"] --> B["CustomStage.MapData"]
+  B --> C["StageManager · Stage"]
+  C --> D["StageBuilder"]
+  D --> E["탑뷰·사이드뷰 타일 배치"]
+  D --> F["충돌 대상 격자"]
+  F --> G["ColliderOptimizer · 직사각형 병합"]
+  G --> H["ColliderBuilder · BoxCollider 배치"]
+```
+
 **CustomStage.MapData:** 두 시점의 타일·제한 영역·아이템·포탈·문 시점 정보를 전달합니다. **StageManager → Stage → StageBuilder:** 맵 데이터를 받아 스테이지를 생성합니다. **ColliderOptimizer → ColliderBuilder:** 격자를 직사각형으로 묶고 충돌체를 배치합니다.
 
 ```csharp
