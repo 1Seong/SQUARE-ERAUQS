@@ -7,6 +7,7 @@
 **QualitySettings:** Android가 Mobile 품질 프리셋을 선택합니다. **Mobile_RPAsset:** 해상도 스케일·추가 텍스처·그림자 옵션을 조절합니다. 설정 기반 개선이므로 존재하지 않는 최적화 스크립트를 만들지 않고 실제 에셋 값을 발췌했습니다.
 
 ```mermaid
+%%{init: {"htmlLabels": false, "themeVariables": {"fontFamily": "Arial, sans-serif"}, "flowchart": {"padding": 20, "diagramPadding": 20}, "sequence": {"diagramMarginX": 24, "diagramMarginY": 16, "wrap": true}}}%%
 flowchart LR
   A["Android 빌드"] --> B["Mobile 품질 프리셋 · 인덱스 0"]
   B --> C["Mobile_RPAsset"]

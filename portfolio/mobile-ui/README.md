@@ -7,6 +7,7 @@
 InputWrapper는 기존 입력 API와 터치 입력 사이의 **Adapter 역할**을 합니다. 별도 Adapter 인터페이스 계층이 아니라 정적 래퍼이며, 버튼 입력을 기존 플레이어 코드가 같은 방식으로 읽게 합니다.
 
 ```mermaid
+%%{init: {"htmlLabels": false, "themeVariables": {"fontFamily": "Arial, sans-serif"}, "flowchart": {"padding": 20, "diagramPadding": 20}, "sequence": {"diagramMarginX": 24, "diagramMarginY": 16, "wrap": true}}}%%
 flowchart LR
   K["Unity 키보드 입력"] --> W["InputWrapper · 공통 입력 API"]
   T["모바일 버튼 · 축 값과 액션 주입"] --> W

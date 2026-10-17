@@ -5,6 +5,7 @@
 ## 코드
 
 ```mermaid
+%%{init: {"htmlLabels": false, "themeVariables": {"fontFamily": "Arial, sans-serif"}, "flowchart": {"padding": 20, "diagramPadding": 20}, "sequence": {"diagramMarginX": 24, "diagramMarginY": 16, "wrap": true}}}%%
 classDiagram
   class PlayerSelectableInterface {
     CheckColor()
@@ -14,7 +15,7 @@ classDiagram
   ItemBehavior --> PlayerSelectableInterface : Strategy 방식의 색상 정책
   ItemBehavior <|-- Consumable
   ItemBehavior --> EffectSubscriber : Observer · PlayerTriggerEvent
-  note for ItemBehavior "공통 접촉 검사와 이벤트 발행 · Consumable은 base 호출 후 소모"
+  note for ItemBehavior "공통 접촉 검사 후 효과 호출"
   note for EffectSubscriber "개별 기믹 효과는 팀원 구현"
 ```
 
