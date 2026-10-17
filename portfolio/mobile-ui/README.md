@@ -4,6 +4,15 @@
 
 ## 코드
 
+InputWrapper는 기존 입력 API와 터치 입력 사이의 **Adapter 역할**을 합니다. 별도 Adapter 인터페이스 계층이 아니라 정적 래퍼이며, 버튼 입력을 기존 플레이어 코드가 같은 방식으로 읽게 합니다.
+
+```mermaid
+flowchart LR
+  K["Unity 키보드 입력"] --> W["InputWrapper · 공통 입력 API"]
+  T["모바일 버튼 · 축 값과 액션 주입"] --> W
+  W --> P["기존 플레이어와 시점 전환 로직"]
+```
+
 **InputWrapper:** PC 입력과 모바일 주입 값을 같은 API로 제공합니다. **MobileButtons · MobileJumpNShift:** 터치 이동·점프·시점 전환을 전달합니다. **SafeAreaFitter:** 기기 안전 영역 안으로 UI를 이동합니다. **LocalizationAnimatorEvent:** 한국어용 Animator를 선택합니다.
 
 ```csharp

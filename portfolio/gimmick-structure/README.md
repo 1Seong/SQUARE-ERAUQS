@@ -13,12 +13,14 @@ classDiagram
   PlayerSelectableInterface <|.. PlayerNonSelect
   ItemBehavior --> PlayerSelectableInterface : Strategy 방식의 색상 정책
   ItemBehavior <|-- Consumable
-  ItemBehavior --> EffectSubscriber : PlayerTriggerEvent
+  ItemBehavior --> EffectSubscriber : Observer · PlayerTriggerEvent
   note for ItemBehavior "공통 접촉 검사와 이벤트 발행 · Consumable은 base 호출 후 소모"
   note for EffectSubscriber "개별 기믹 효과는 팀원 구현"
 ```
 
 **ItemBehavior:** 색상 정책과 플레이어 진입 이벤트를 공통 처리합니다. **PlayerSelectableInterface:** 색상별 적용 정책을 교체합니다. **Consumable:** 공통 소모 처리를 확장합니다. 개별 기믹의 효과는 이 샘플에 포함하지 않습니다.
+
+Strategy는 색상 적용 판정을, Observer는 기믹 효과 호출을 담당합니다. Consumable의 base 호출은 상속을 통한 공통 처리 재사용이며, 이를 별도의 완전한 Template Method 구현으로 세지는 않습니다.
 
 ```csharp
 // 색상 판정을 기믹 효과와 분리하는 공통 계약

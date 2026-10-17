@@ -13,13 +13,15 @@ sequenceDiagram
   I->>S: ConvertButton
   S->>S: 점프·제한·전환 중 여부 검사
   S->>S: 현재 시점 변경
-  S->>V: convertEvent 구독자 호출
+  S->>V: Observer · convertEvent 구독자 호출
   S->>G: 같은 이벤트 전달
   G->>G: 중력 방향·이동 축 제약 갱신
   S->>S: convertEventLast
 ```
 
 **Stage:** 카메라·투영 벽·좌표 보정을 이벤트로 연결합니다. **CustomGravity:** 시점에 맞춰 중력 방향과 Rigidbody 이동 축을 바꿉니다. **GameManager:** 현재 시점과 플레이 상태를 보관합니다.
+
+Observer 패턴으로 전환 알림과 반응을 분리합니다. CustomGravity의 enum 분기는 상태 관리이지만, 상태별 객체에 동작을 위임하는 GoF State 패턴은 아닙니다.
 
 ```csharp
 // Stage.Awake: 전환 시 처리할 기능을 등록. 각 컴포넌트도 같은 이벤트를 구독한다.
