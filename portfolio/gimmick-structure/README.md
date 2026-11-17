@@ -2,6 +2,12 @@
 
 **담당자:** 최성원 — 공통 구조 설계 / 팀원 — 기믹별 세부 동작 구현
 
+`ItemBehavior`에서 색상 정책에 따라 플레이어 접촉을 검사하고, 통과한 경우 팀원이 구현한 개별 효과를 이벤트로 호출합니다.
+
+- **발췌** [색상별 적용 정책](#색상별-적용-정책) · [접촉 이벤트와 공통 소모](#접촉-이벤트와-공통-소모)
+- **자료 범위** 비공개 원본에서 발췌한 내용입니다.
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 ```mermaid
@@ -22,6 +28,8 @@ classDiagram
 **ItemBehavior:** 색상 정책과 플레이어 진입 이벤트를 공통 처리합니다. **PlayerSelectableInterface:** 색상별 적용 정책을 교체합니다. **Consumable:** 공통 소모 처리를 확장합니다. 개별 기믹의 효과는 이 샘플에 포함하지 않습니다.
 
 Strategy는 색상 적용 판정을, Observer는 기믹 효과 호출을 담당합니다. Consumable의 base 호출은 상속을 통한 공통 처리 재사용이며, 이를 별도의 완전한 Template Method 구현으로 세지는 않습니다.
+
+### 색상별 적용 정책
 
 ```csharp
 // 색상 판정을 기믹 효과와 분리하는 공통 계약
@@ -44,6 +52,8 @@ public class PlayerSelectable : PlayerSelectableInterface
         || playerId == 2 && other.CompareTag("Player2");
 }
 ```
+
+### 접촉 이벤트와 공통 소모
 
 ```csharp
 // ItemBehavior: 원본의 색상별 외형 설정은 생략

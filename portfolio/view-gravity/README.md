@@ -2,6 +2,12 @@
 
 **담당자:** 최성원 — 시점 전환·투영 벽·중력 상태 연동
 
+시점 전환 이벤트로 카메라·투영 벽·중력 갱신을 연결합니다. `CustomGravity`는 현재 시점에 맞춰 중력 방향과 Rigidbody 이동 축을 바꿉니다.
+
+- **발췌** [시점 전환과 투영 벽](#시점-전환과-투영-벽) · [중력과 이동 축 갱신](#중력과-이동-축-갱신)
+- **자료 범위** 비공개 원본에서 발췌한 내용입니다.
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 ```mermaid
@@ -23,6 +29,8 @@ sequenceDiagram
 **Stage:** 카메라·투영 벽·좌표 보정을 이벤트로 연결합니다. **CustomGravity:** 시점에 맞춰 중력 방향과 Rigidbody 이동 축을 바꿉니다. **GameManager:** 현재 시점과 플레이 상태를 보관합니다.
 
 Observer 패턴으로 전환 알림과 반응을 분리합니다. CustomGravity의 enum 분기는 상태 관리이지만, 상태별 객체에 동작을 위임하는 GoF State 패턴은 아닙니다.
+
+### 시점 전환과 투영 벽
 
 ```csharp
 // Stage.Awake: 전환 시 처리할 기능을 등록. 각 컴포넌트도 같은 이벤트를 구독한다.
@@ -71,6 +79,8 @@ private void OnDestroy()
     InputWrapper.ShiftAction -= ConvertButton;
 }
 ```
+
+### 중력과 이동 축 갱신
 
 ```csharp
 // CustomGravity: 물체별 중력과 축 제한을 한 상태로 갱신

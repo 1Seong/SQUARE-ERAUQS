@@ -2,6 +2,12 @@
 
 **담당자:** 최성원 — 맵 출력 데이터 가공·벽 구성·충돌체 병합
 
+맵툴이 내보낸 두 시점의 타일 정보로 벽을 구성하고, 인접한 충돌 칸을 직사각형으로 묶어 BoxCollider를 배치합니다.
+
+- **발췌** [시점별 벽 구성](#시점별-벽-구성) · [직사각형 병합과 충돌체 배치](#직사각형-병합과-충돌체-배치)
+- **자료 범위** 비공개 원본에서 발췌한 내용입니다.
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 ```mermaid
@@ -17,6 +23,8 @@ flowchart LR
 ```
 
 **CustomStage.MapData:** 두 시점의 타일·제한 영역·아이템·포탈·문 시점 정보를 전달합니다. **StageManager → Stage → StageBuilder:** 맵 데이터를 받아 스테이지를 생성합니다. **ColliderOptimizer → ColliderBuilder:** 격자를 직사각형으로 묶고 충돌체를 배치합니다.
+
+### 맵 데이터와 호출 순서
 
 ```csharp
 // CustomStage.MapData의 핵심 필드 발췌: 빌더가 소비하는 공통 데이터
@@ -46,6 +54,8 @@ private void BuildCollisionAreas(CustomStage.MapData map)
     sideBanBuilder.BuildColliders(map.sideBan);
 }
 ```
+
+### 시점별 벽 구성
 
 ```csharp
 // StageBuilder의 탑뷰 벽 배치 발췌: 같은 X열의 사이드뷰 벽 구간을 찾아 깊이 배치
@@ -77,6 +87,8 @@ private void BuildTopWalls(char[,] top, char[,] side)
     }
 }
 ```
+
+### 직사각형 병합과 충돌체 배치
 
 ```csharp
 // ColliderOptimizer: 같은 충돌 영역의 연속 셀을 겹치지 않는 직사각형으로 묶기

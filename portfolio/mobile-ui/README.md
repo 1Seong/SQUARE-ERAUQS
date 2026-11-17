@@ -2,6 +2,12 @@
 
 **담당자:** 최성원 — 입력 래퍼·터치 버튼·Safe Area·언어별 UI 대응
 
+키보드와 터치 방향 입력을 같은 API로 읽게 하고, 터치 버튼 전환·Safe Area·언어별 UI를 처리합니다.
+
+- **발췌** [키보드와 터치 입력 통합](#키보드와-터치-입력-통합) · [터치 액션과 Safe Area](#터치-액션과-safe-area)
+- **자료 범위** 비공개 원본에서 발췌한 내용입니다.
+- [생략 및 재구성한 내용](#생략-및-재구성한-내용)
+
 ## 코드
 
 InputWrapper는 기존 입력 API와 터치 입력 사이의 **Adapter 역할**을 합니다. 별도 Adapter 인터페이스 계층이 아니라 정적 래퍼이며, 버튼 입력을 기존 플레이어 코드가 같은 방식으로 읽게 합니다.
@@ -15,6 +21,8 @@ flowchart LR
 ```
 
 **InputWrapper:** PC 입력과 모바일 주입 값을 같은 API로 제공합니다. **MobileButtons · MobileJumpNShift:** 터치 이동·점프·시점 전환을 전달합니다. **SafeAreaFitter:** 기기 안전 영역 안으로 UI를 이동합니다. **LocalizationAnimatorEvent:** 한국어용 Animator를 선택합니다.
+
+### 키보드와 터치 입력 통합
 
 ```csharp
 // InputWrapper: 기존 플레이어 로직은 플랫폼 대신 같은 입력 API만 참조
@@ -44,6 +52,8 @@ public static class InputWrapper
     }
 }
 ```
+
+### 터치 방향 전환
 
 ```csharp
 // MobileButtons: 드래그로 다른 방향 버튼에 넘어가면 이전 축부터 해제
@@ -75,6 +85,8 @@ public void OnPointerDown(PointerEventData data)
     else InputWrapper.ShiftAction?.Invoke();
 }
 ```
+
+### 터치 액션과 Safe Area
 
 ```csharp
 // SafeAreaFitter.ApplySafeArea: 카메라/Overlay Canvas 차이를 반영해 부모 좌표로 변환
@@ -110,6 +122,8 @@ public void ApplySafeArea()
     rect.anchoredPosition += offset;
 }
 ```
+
+### 언어별 UI와 번역 에셋
 
 ```csharp
 // LocalizationAnimatorEvent.OnEnable: 한국어를 사용하는 화면의 전용 애니메이션 선택
